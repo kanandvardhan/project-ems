@@ -15,13 +15,18 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const today = new Date();
+  today.setFullYear(today.getFullYear() - 18);
+  const maxDate = today.toISOString().split("T")[0];
+  console.log(maxDate);
+
   let page_heading = "Employee Registrations";
 
   if (window.sessionStorage.getItem("user_level_id") == "2") {
     page_heading = "My Account";
   }
 
-  // Function for edit //
+  // Function htmlFor edit //
   let { id } = useParams();
 
   const [roleDropDown, setroleDropDown] = useState([
@@ -31,7 +36,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
     },
   ]);
 
-  // Alert message for displaying success and error ////
+  // Alert message htmlFor displaying success and error ////
   const [message, setMessage] = useState({
     show_message: false,
     error_type: "",
@@ -201,7 +206,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       <div>
                         <div className="row">
                           <div className="col">
-                            <label for="name">Email ID</label>
+                            <label htmlFor="name">Email ID</label>
                             <input
                               type="email"
                               className="form-control"
@@ -213,7 +218,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                             />
                           </div>
                           <div className="col">
-                            <label for="name">Register As</label>
+                            <label htmlFor="name">Register As</label>
                             <select
                               name="user_level_id"
                               value={formData.user_level_id}
@@ -222,8 +227,8 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                               required
                             >
                               <option>Register As</option>
-                              {roleDropDown.map((option) => (
-                                <option value={option.roles_id}>
+                              {roleDropDown.map((option, idx) => (
+                                <option key={idx} value={option.roles_id}>
                                   {option.roles_name}
                                 </option>
                               ))}
@@ -234,7 +239,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       <div>
                         <div className="row">
                           <div className="col">
-                            <label for="name">Password</label>
+                            <label htmlFor="name">Password</label>
                             <input
                               type="password"
                               className="form-control"
@@ -246,7 +251,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                             />
                           </div>
                           <div className="col">
-                            <label for="name">Confirm Password</label>
+                            <label htmlFor="name">Confirm Password</label>
                             <input
                               type="password"
                               className="form-control"
@@ -261,7 +266,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       </div>
                       <div className="row">
                         <div className="col">
-                          <label for="name">First Name</label>
+                          <label htmlFor="name">First Name</label>
                           <input
                             type="text"
                             className="form-control"
@@ -273,7 +278,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                           />
                         </div>
                         <div className="col">
-                          <label for="name">Last Name</label>
+                          <label htmlFor="name">Last Name</label>
                           <input
                             type="text"
                             className="form-control"
@@ -287,7 +292,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       </div>
                       <div className="row">
                         <div className="col">
-                          <label for="name">Date of Birth</label>
+                          <label htmlFor="name">Date of Birth</label>
                           <input
                             type="date"
                             className="form-control"
@@ -296,10 +301,12 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                             name="user_dob"
                             value={formData.user_dob}
                             onChange={(e) => onChange(e)}
+                            min="1990-01-01"
+                            max={maxDate}
                           />
                         </div>
                         <div className="col">
-                          <label for="name">Mobile</label>
+                          <label htmlFor="name">Mobile</label>
                           <input
                             type="text"
                             className="form-control"
@@ -322,7 +329,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       </div>
                       <div className="row">
                         <div className="col">
-                          <label for="name">Nationality</label>
+                          <label htmlFor="name">Nationality</label>
                           <input
                             type="text"
                             className="form-control"
@@ -336,7 +343,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       </div>
                       <div className="row">
                         <div className="col">
-                          <label for="name">Full Address</label>
+                          <label htmlFor="name">Full Address</label>
                           <input
                             type="text"
                             className="form-control"
@@ -348,7 +355,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                           />
                         </div>
                         <div className="col">
-                          <label for="name">City</label>
+                          <label htmlFor="name">City</label>
                           <input
                             type="text"
                             className="form-control"
@@ -362,7 +369,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       </div>
                       <div className="row">
                         <div className="col">
-                          <label for="name">State</label>
+                          <label htmlFor="name">State</label>
                           <input
                             type="text"
                             className="form-control"
@@ -374,7 +381,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                           />
                         </div>
                         <div className="col">
-                          <label for="name">Country</label>
+                          <label htmlFor="name">Country</label>
                           <input
                             type="text"
                             className="form-control"

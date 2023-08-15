@@ -295,7 +295,7 @@ header ul.nav li ul li a {
 
 .navbar .nav a:hover {
   background: none;
-  color: #ffffff !important;
+  color: #000000 !important;
   font-weight: bold;
 }
 
