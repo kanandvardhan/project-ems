@@ -1,0 +1,36 @@
+.card_flex {
+  /* height: 150px; */
+}
+
+.card_flex img,
+text {
+  height: 160px;
+  width: 310px;
+}
+
+@media screen and (max-width: 1250px) {
+  .card_flex {
+    /* max-width: 606px; */
+  }
+  .card_flex img,
+  text {
+    height: 160px;
+    width: 320px;
+  }
+}
+/* .collapsible {
+  width: 100%;
+} */
+@media screen and (max-width: 768px) {
+  .card_flex {
+    flex-direction: column;
+    width: 280px;
+  }
+  .image,
+  .text {
+    width: 280px;
+  }
+  .text {
+    padding: 1.5rem;
+  }
+}
