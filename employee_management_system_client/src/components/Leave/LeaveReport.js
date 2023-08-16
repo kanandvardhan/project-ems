@@ -88,9 +88,12 @@ export default class LeaveReport extends React.Component {
               </div>
             </div>
             <div>
-              <div className="add-button btn btn-success">
-                <Link to="/leave-add">Add Leave</Link>
-              </div>
+              {window.sessionStorage.getItem("user_level_id") == "2" ?? (
+                <div className="add-button btn btn-success">
+                  <Link to="/leave-add">Add Leave</Link>
+                </div>
+              )}
+
               <table className="table table-striped table-bordered table-hover">
                 <thead className="thead-dark">
                   <tr>

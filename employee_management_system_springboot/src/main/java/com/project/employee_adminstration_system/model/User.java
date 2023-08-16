@@ -22,7 +22,6 @@ public class User {
 	private String user_last_name;
 	private String user_dob;
 
-
 	private String user_address;
 	private String user_city;
 	private String user_state;

@@ -7,6 +7,7 @@ import { LOGOUT } from "../../actions/types";
 
 const Header = () => {
   const navigate = useNavigate();
+  const username = window.sessionStorage.getItem("user_name");
 
   function logout() {
     window.sessionStorage.removeItem("user");
@@ -91,11 +92,12 @@ const Header = () => {
       </li>
       <li className="dropdown">
         <a href="#" data-toggle="dropdown" className="dropdown-toggle">
-          My Administration<b className="caret"></b>
+          {username}
+          <b className="caret"></b>
         </a>
         <ul className="dropdown-menu">
           <li>
-            <Link to="/location-add">Find Packers and Movers</Link>
+            <Link to="/location-add"></Link>
           </li>
           <li>
             <Link to="/salary-report">View Salarys</Link>
@@ -128,7 +130,8 @@ const Header = () => {
       </li>
       <li className="dropdown">
         <a href="#" data-toggle="dropdown" className="dropdown-toggle">
-          My Administration<b className="caret"></b>
+          {username}
+          <b className="caret"></b>
         </a>
         <ul className="dropdown-menu">
           <li>
@@ -190,7 +193,7 @@ const Header = () => {
               <span className="icon-bar"></span>
             </button>
             <Link to="/" className="navbar-brand">
-              Employee Administration system
+              Employee Management System
             </Link>
           </div>
           <div className="navbar-collapse collapse ">

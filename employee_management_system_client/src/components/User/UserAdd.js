@@ -144,7 +144,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
               console.log(response);
               navigate("/login", {
                 state: {
-                  msg: "Your account has been successfully registered. Kinldy login.",
+                  msg: "An Employee account has been successfully registered.",
                   error_type: "alert-success",
                 },
               });

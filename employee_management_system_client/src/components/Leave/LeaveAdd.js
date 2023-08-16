@@ -9,6 +9,12 @@ import config from "../../utils/config";
 const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
   const navigate = useNavigate();
   // Function for edit //
+
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+  const minDate = tomorrow.toISOString().split("T")[0];
+
   let { id } = useParams();
 
   const [userDropDown, setuserDropDown] = useState([
@@ -98,7 +104,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
     let timeDiff = toDateObj.getTime() - fromDateObj.getTime();
     let dayMilliSeconds = 1000 * 60 * 60 * 24;
     let totalDays = timeDiff / dayMilliSeconds;
-    if (totalDays < 0) {
+    if (totalDays <= 0) {
       alert("PLEASE ENTER CORRECT FROM AND TO DATES.");
       return;
     }
@@ -275,8 +281,8 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             className="form-control"
                             placeholder="Reason For Leave"
                             disabled={
-                              window.sessionStorage.getItem("user_level_id") ==
-                              "1"
+                              window.sessionStorage.getItem("user_level_id") !==
+                              "2"
                             }
                             required
                           />
@@ -298,9 +304,10 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             className="form-control"
                             placeholder="From Date"
                             disabled={
-                              window.sessionStorage.getItem("user_level_id") ==
-                              "1"
+                              window.sessionStorage.getItem("user_level_id") !==
+                              "2"
                             }
+                            min={minDate}
                             required
                           />
                         </div>
@@ -321,9 +328,10 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             className="form-control"
                             placeholder="To Date"
                             disabled={
-                              window.sessionStorage.getItem("user_level_id") ==
-                              "1"
+                              window.sessionStorage.getItem("user_level_id") !==
+                              "2"
                             }
+                            min={formData.leave_to_date}
                             required
                           />
                         </div>
@@ -364,8 +372,8 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             className="form-control"
                             placeholder="Leave Description"
                             disabled={
-                              window.sessionStorage.getItem("user_level_id") ==
-                              "1"
+                              window.sessionStorage.getItem("user_level_id") !==
+                              "2"
                             }
                             required
                           ></textarea>

@@ -39,6 +39,7 @@ export default class SalaryReport extends React.Component {
    * Function for getting lists
    */
   componentDidMount() {
+    console.log(window.sessionStorage.getItem("user_level_id") == "2");
     if (window.sessionStorage.getItem("user_level_id") == "2") {
       axios
         .get(
@@ -48,7 +49,7 @@ export default class SalaryReport extends React.Component {
         .then((res) => {
           const salarys = res.data;
           this.setState({ salarys });
-          console.log(salarys);
+          // console.log(salarys);
         });
     } else {
       axios.get(`${config.api_url}/salaries/all-salaries/0`).then((res) => {
@@ -94,9 +95,11 @@ export default class SalaryReport extends React.Component {
               </div>
             </div>
             <div>
-              <div className="add-button btn btn-success">
-                <Link to="/salary-add">Add Salary</Link>
-              </div>
+              {window.sessionStorage.getItem("user_level_id") !== "2" && (
+                <div className="add-button btn btn-success">
+                  <Link to="/salary-add">Add Salary</Link>
+                </div>
+              )}
               <table className="table table-striped table-bordered table-hover">
                 <thead className="thead-dark">
                   <tr>
@@ -134,12 +137,17 @@ export default class SalaryReport extends React.Component {
                           <span className="glyphicon glyphicon-download-alt"></span>
                         </a>
                         &nbsp;&nbsp;
-                        <a
-                          onClick={() => this.confirmatioBox(salary.salary_id)}
-                          href="#!"
-                        >
-                          <span className="glyphicon glyphicon-trash deletei"></span>
-                        </a>
+                        {window.sessionStorage.getItem("user_level_id") !==
+                          "2" && (
+                          <a
+                            onClick={() =>
+                              this.confirmatioBox(salary.salary_id)
+                            }
+                            href="#!"
+                          >
+                            <span className="glyphicon glyphicon-trash deletei"></span>
+                          </a>
+                        )}
                       </td>
                     </tr>
                   ))}

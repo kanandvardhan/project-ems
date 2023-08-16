@@ -21,19 +21,19 @@ public class Salary {
 	private String salary_employee_id;
 	private String salary_month;
 	private String salary_working_days;
-	private long salary_basic;
-	private long salary_hra;
-	private long salary_mediclaim;
-	private long salary_ta;
-	private long salary_da;
-	private long salary_reimbursement;
-	private long salary_ca;
-	private long salary_others;
-	private long salary_dpf;
-	private long salary_dtax;
-	private long salary_desc;
-	private long salary_total;
-	private long salary_dedc;
+	private String salary_basic;
+	private String salary_hra;
+	private String salary_mediclaim;
+	private String salary_ta;
+	private String salary_da;
+	private String salary_reimbursement;
+	private String salary_ca;
+	private String salary_others;
+	private String salary_dpf;
+	private String salary_dtax;
+	private String salary_desc;
+	private String salary_total;
+	private String salary_dedc;
 	private MultipartFile salary_slip;
 	private String salary_slip_filename;
 	
@@ -54,10 +54,10 @@ public class Salary {
 
 
 	public Salary(long salary_id, String salary_employee_id, String salary_month, String salary_working_days,
-				  long salary_basic, long salary_hra, long salary_mediclaim, long salary_ta, long salary_da,
-				  long salary_reimbursement, long salary_ca, long salary_others, long salary_dpf, long salary_dtax,
-				  long salary_desc, long salary_total, long salary_dedc, MultipartFile salary_slip,
-				  String salary_slip_filename) {
+			String salary_basic, String salary_hra, String salary_mediclaim, String salary_ta, String salary_da,
+			String salary_reimbursement, String salary_ca, String salary_others, String salary_dpf, String salary_dtax,
+			String salary_desc, String salary_total, String salary_dedc, MultipartFile salary_slip,
+			String salary_slip_filename) {
 		super();
 		this.salary_id = salary_id;
 		this.salary_employee_id = salary_employee_id;
@@ -145,157 +145,157 @@ public class Salary {
 
 
 
-	public long getSalary_basic() {
+	public String getSalary_basic() {
 		return salary_basic;
 	}
 
 
 
-	public void setSalary_basic(long salary_basic) {
+	public void setSalary_basic(String salary_basic) {
 		this.salary_basic = salary_basic;
 	}
 
 
 
-	public long getSalary_hra() {
+	public String getSalary_hra() {
 		return salary_hra;
 	}
 
 
 
-	public void setSalary_hra(long salary_hra) {
+	public void setSalary_hra(String salary_hra) {
 		this.salary_hra = salary_hra;
 	}
 
 
 
-	public long getSalary_mediclaim() {
+	public String getSalary_mediclaim() {
 		return salary_mediclaim;
 	}
 
 
 
-	public void setSalary_mediclaim(long salary_mediclaim) {
+	public void setSalary_mediclaim(String salary_mediclaim) {
 		this.salary_mediclaim = salary_mediclaim;
 	}
 
 
 
-	public long getSalary_ta() {
+	public String getSalary_ta() {
 		return salary_ta;
 	}
 
 
 
-	public void setSalary_ta(long salary_ta) {
+	public void setSalary_ta(String salary_ta) {
 		this.salary_ta = salary_ta;
 	}
 
 
 
-	public long getSalary_da() {
+	public String getSalary_da() {
 		return salary_da;
 	}
 
 
 
-	public void setSalary_da(long salary_da) {
+	public void setSalary_da(String salary_da) {
 		this.salary_da = salary_da;
 	}
 
 
 
-	public long getSalary_reimbursement() {
+	public String getSalary_reimbursement() {
 		return salary_reimbursement;
 	}
 
 
 
-	public void setSalary_reimbursement(long salary_reimbursement) {
+	public void setSalary_reimbursement(String salary_reimbursement) {
 		this.salary_reimbursement = salary_reimbursement;
 	}
 
 
 
-	public long getSalary_ca() {
+	public String getSalary_ca() {
 		return salary_ca;
 	}
 
 
 
-	public void setSalary_ca(long salary_ca) {
+	public void setSalary_ca(String salary_ca) {
 		this.salary_ca = salary_ca;
 	}
 
 
 
-	public long getSalary_others() {
+	public String getSalary_others() {
 		return salary_others;
 	}
 
 
 
-	public void setSalary_others(long salary_others) {
+	public void setSalary_others(String salary_others) {
 		this.salary_others = salary_others;
 	}
 
 
 
-	public long getSalary_dpf() {
+	public String getSalary_dpf() {
 		return salary_dpf;
 	}
 
 
 
-	public void setSalary_dpf(long salary_dpf) {
+	public void setSalary_dpf(String salary_dpf) {
 		this.salary_dpf = salary_dpf;
 	}
 
 
 
-	public long getSalary_dtax() {
+	public String getSalary_dtax() {
 		return salary_dtax;
 	}
 
 
 
-	public void setSalary_dtax(long salary_dtax) {
+	public void setSalary_dtax(String salary_dtax) {
 		this.salary_dtax = salary_dtax;
 	}
 
 
 
-	public long getSalary_desc() {
+	public String getSalary_desc() {
 		return salary_desc;
 	}
 
 
 
-	public void setSalary_desc(long salary_desc) {
+	public void setSalary_desc(String salary_desc) {
 		this.salary_desc = salary_desc;
 	}
 
 
 
-	public long getSalary_total() {
+	public String getSalary_total() {
 		return salary_total;
 	}
 
 
 
-	public void setSalary_total(long salary_total) {
+	public void setSalary_total(String salary_total) {
 		this.salary_total = salary_total;
 	}
 
 
 
-	public long getSalary_dedc() {
+	public String getSalary_dedc() {
 		return salary_dedc;
 	}
 
 
 
-	public void setSalary_dedc(long salary_dedc) {
+	public void setSalary_dedc(String salary_dedc) {
 		this.salary_dedc = salary_dedc;
 	}
 

@@ -26,6 +26,25 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     },
   ]);
 
+  const [formData, setFormData] = useState({
+    salary_employee_id: "",
+    salary_month: "",
+    salary_working_days: "",
+    salary_basic: "",
+    salary_hra: "",
+    salary_mediclaim: "",
+    salary_ta: "",
+    salary_da: "",
+    salary_reimbursement: "",
+    salary_ca: "",
+    salary_others: "",
+    salary_dpf: "",
+    salary_dtax: "",
+    salary_desc: "",
+    salary_total: "",
+    salary_dedc: "",
+  });
+
   // Creating FormData Form elements ////
   const [message, setMessage] = useState({
     show_message: false,
@@ -57,79 +76,38 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     });
   }, []);
 
-  const [formData, setFormData] = useState({
-    salary_employee_id: "",
-    salary_month: "",
-    salary_working_days: "",
-    salary_basic: "",
-    salary_hra: "",
-    salary_mediclaim: "",
-    salary_ta: "",
-    salary_da: "",
-    salary_reimbursement: "",
-    salary_ca: "",
-    salary_others: "",
-    salary_dpf: "",
-    salary_dtax: "",
-    salary_desc: "",
-    salary_total: "",
-    salary_dedc: "",
-  });
+  const totalSalary = () => {
+    const salary_additions =
+      parseFloat(formData.salary_basic) +
+      parseFloat(formData.salary_hra) +
+      parseFloat(formData.salary_mediclaim) +
+      parseFloat(formData.salary_ta) +
+      parseFloat(formData.salary_da) +
+      parseFloat(formData.salary_reimbursement) +
+      parseFloat(formData.salary_ca) +
+      parseFloat(formData.salary_others) +
+      parseFloat(formData.salary_dpf);
 
-  const calculateTotalSalary = () => {
-    const {
-      salary_basic,
-      salary_hra,
-      salary_mediclaim,
-      salary_ta,
-      salary_da,
-      salary_reimbursement,
-      salary_ca,
-      salary_others,
-      salary_dpf,
-      salary_dtax,
-    } = formData;
+    const deductions = parseFloat(formData.salary_dtax);
+    const salarySum = salary_additions - deductions;
 
-    const salaryPositive =
-      parseInt(salary_basic) +
-      parseInt(salary_hra) +
-      parseInt(salary_mediclaim) +
-      parseInt(salary_ta) +
-      parseInt(salary_da) +
-      parseInt(salary_reimbursement) +
-      parseInt(salary_ca) +
-      parseInt(salary_others);
-    const salaryNegative = Math.abs(
-      parseInt(salary_dpf) + parseInt(salary_dtax)
-    );
-    const total = salaryPositive - salaryNegative;
-
-    return { total, salaryNegative };
-  };
-
-  // useEffect(() => {
-  //   const { total, salaryNegative } = calculateTotalSalary();
-
-  //   setFormData({
-  //     ...formData,
-  //     salary_total: total,
-  //     salary_dedc: salaryNegative,
-  //   });
-  // }),
-  //   [formData.salary_total];
-
-  // Handlinng Change Event
-  const onChange = (e) => {
-    const fieldName = e.target.name;
-    const fieldValue = e.target.value;
-    const { total, salaryNegative } = calculateTotalSalary();
-    setFormData({
-      ...formData,
-      [fieldName]: fieldValue,
-      salary_dedc: salaryNegative,
-      salary_total: total,
+    setFormData((prevState) => {
+      return { ...prevState, salary_dedc: deductions, salary_total: salarySum };
     });
   };
+
+  // Handling Change Event
+  const onChange = (e) => {
+    // totalSalary();
+    setFormData((prevState) => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+    totalSalary();
+  };
+
+  useEffect(() => {
+    // totalSalary();
+  }, [formData]);
 
   // Handling Submit
   const onSubmit = async (e) => {
@@ -223,13 +201,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                 )}
                 <section className="vh-100">
                   <div className="d-flex justify-content-center align-items-center h-100">
-                    <form className="form-horizontal" onSubmit={onSubmit}>
+                    <form
+                      className="form-horizontal"
+                      onSubmit={() => onSubmit()}
+                    >
                       <div className="form-group frm50">
                         <label
                           className="control-label col-sm-4"
                           htmlFor="email"
                         >
-                          Select User :
+                          Select Employee :
                         </label>
                         <div className="col-sm-8">
                           <select
@@ -237,6 +218,10 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                             value={formData.salary_employee_id}
                             onChange={(e) => onChange(e)}
                             className="form-control"
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                           >
                             <option>Select User</option>
                             {userDropDown.map((option, id) => (
@@ -280,12 +265,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_working_days}
                             onChange={(e) => onChange(e)}
                             name="salary_working_days"
                             className="form-control"
-                            min={0}
                             placeholder="Total Working Days"
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -300,12 +289,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_basic}
                             onChange={(e) => onChange(e)}
                             name="salary_basic"
                             className="form-control"
-                            min={0}
                             placeholder="Salary Basic"
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -320,12 +313,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_hra}
                             onChange={(e) => onChange(e)}
                             name="salary_hra"
                             className="form-control"
-                            min={0}
                             placeholder="Total HRA"
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -340,12 +337,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_mediclaim}
                             onChange={(e) => onChange(e)}
                             name="salary_mediclaim"
                             className="form-control"
                             placeholder="Salary Mediclaim"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -360,12 +361,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_ta}
                             onChange={(e) => onChange(e)}
                             name="salary_ta"
                             className="form-control"
                             placeholder="Travel Allowance"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -380,12 +385,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_da}
                             onChange={(e) => onChange(e)}
                             name="salary_da"
                             className="form-control"
                             placeholder="Total DA"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -400,12 +409,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_reimbursement}
                             onChange={(e) => onChange(e)}
                             name="salary_reimbursement"
                             className="form-control"
                             placeholder="Salary Reimbursement"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -420,12 +433,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_ca}
                             onChange={(e) => onChange(e)}
                             name="salary_ca"
                             className="form-control"
                             placeholder="Salary CA"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -440,12 +457,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_others}
                             onChange={(e) => onChange(e)}
                             name="salary_others"
                             className="form-control"
                             placeholder="Others Salary"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -460,12 +481,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_dpf}
                             onChange={(e) => onChange(e)}
                             name="salary_dpf"
                             className="form-control"
                             placeholder="Salary DPF"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -480,12 +505,16 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_dtax}
                             onChange={(e) => onChange(e)}
                             name="salary_dtax"
                             className="form-control"
                             placeholder="Salary Dtax"
-                            min={0}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                             required
                           />
                         </div>
@@ -500,13 +529,13 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
-                            value={formData.salary_dedc}
+                            min="0"
+                            value={formData.salary_dtax}
                             onChange={(e) => onChange(e)}
                             name="salary_dedc"
                             className="form-control"
                             placeholder="Total Deduction"
                             disabled
-                            min={0}
                             required
                           />
                         </div>
@@ -521,14 +550,13 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         <div className="col-sm-8">
                           <input
                             type="number"
+                            min="0"
                             value={formData.salary_total}
                             onChange={(e) => onChange(e)}
                             name="salary_total"
                             className="form-control"
                             placeholder="Total Salary"
                             disabled
-                            min={0}
-                            required
                           />
                         </div>
                       </div>
@@ -547,6 +575,10 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                             placeholder="Enter details of Salary"
                             required
                             value={formData.salary_desc}
+                            disabled={
+                              window.sessionStorage.getItem("user_level_id") ==
+                              "2"
+                            }
                           ></textarea>
                         </div>
                       </div>
@@ -564,7 +596,6 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                             onChange={(e) => onFileChange(e)}
                             className="form-control"
                             placeholder="User Image"
-                            required
                           />
                         </div>
                       </div>
