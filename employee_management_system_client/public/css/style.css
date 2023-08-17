@@ -297,7 +297,7 @@ header ul.nav li ul li a {
   background: none;
   color: #000000 !important;
   font-weight: bold;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 .navbar .nav > .active > a,
@@ -2145,4 +2145,14 @@ td.Active {
   background: red;
   color: white;
   font-weight: bold;
+}
+
+.row.team {
+  /* gap: 10px; */
+  justify-content: center;
+  align-items: center;
+}
+
+.team-card {
+  margin: 0 20px 0 20px;
 }

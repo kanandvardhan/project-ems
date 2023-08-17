@@ -31,7 +31,6 @@ import FeedbackDetails from "./components/Feedback/FeedbackDetails";
 import SalaryReport from "./components/Salary/SalaryReport";
 import SalaryAdd from "./components/Salary/SalaryAdd";
 import SalaryDetails from "./components/Salary/SalaryDetails";
-import Team from "./components/Pages/Team";
 
 if (localStorage.token) {
   setauthtoken(localStorage.token);
@@ -50,7 +49,6 @@ const App = () => {
             <Route path="/" element={<Landing />} />
             <Route path="/Adminlogin" element={<Adminlogin />} />
             <Route path="/About" element={<About />} />
-            <Route path="/Team" element={<Team />} />
 
             <Route path="/leave-add" element={<LeaveAdd />} />
             <Route path="/leave-report" element={<LeaveReport />} />

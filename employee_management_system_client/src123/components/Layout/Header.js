@@ -181,9 +181,6 @@ const Header = () => {
       <li>
         <Link to="/feedback">Feedback</Link>
       </li>
-      <li>
-        <Link to="/Team">Team</Link>
-      </li>
     </ul>
   );
   return (
