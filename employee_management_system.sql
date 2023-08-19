@@ -1,11 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.1.0
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Mar 05, 2023 at 05:15 AM
--- Server version: 5.7.41
--- PHP Version: 8.1.15
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -214,22 +207,7 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`login_id`, `login_employee_id`, `login_email`, `login_password`, `login_level_id`) VALUES
 (1, '1001', 'admin@admin.com', 'test', '1'),
 (2, '1002', 'employee@gmail.com', 'test', '2'),
-(37, '36', 'hh', 'hh', '2'),
-(39, '38', 'hh', 'hh', '1'),
-(41, '40', 'hh', 'hh', '2'),
-(43, '42', 'hh', 'hh', '2'),
-(45, '44', 'hh', 'hh', '1'),
-(47, '46', 'hh', 'hh', '1'),
-(49, '48', 'jj', 'jj', '1'),
-(51, '50', 'hh', 'hh', '1'),
-(53, '52', 'hh', 'hh', '2'),
-(55, '54', 'hh', 'hh', '1'),
-(57, '56', 'hh', 'hh', '2'),
-(59, '58', 'hhh', 'hh', '1'),
-(61, '60', 'admin1', 'test', '1'),
-(100, '99', 'uu', 'uu', '2'),
-(102, '101', 'jjj', 'jj', '1'),
-(104, '103', 'xx', 'xx', '1');
+(104, '103', 'x@gmail.com', 'test', '1');
 
 -- --------------------------------------------------------
 
@@ -259,49 +237,6 @@ INSERT INTO `month` (`month_id`, `month_name`) VALUES
 (10, 'October'),
 (11, 'November'),
 (12, 'December');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `quotation`
---
-
-CREATE TABLE `quotation` (
-  `quotation_id` int(11) NOT NULL,
-  `quotation_user_id` varchar(255) NOT NULL,
-  `quotation_service_id` varchar(255) NOT NULL,
-  `quotation_from_address` text NOT NULL,
-  `quotation_to_address` text NOT NULL,
-  `quotation_date_time` varchar(255) NOT NULL,
-  `quotation_reference` text NOT NULL,
-  `quotation_details` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `quotation`
---
-
-INSERT INTO `quotation` (`quotation_id`, `quotation_user_id`, `quotation_service_id`, `quotation_from_address`, `quotation_to_address`, `quotation_date_time`, `quotation_reference`, `quotation_details`) VALUES
-(419, '2', '410', 'Noida', 'Banglore', '2022-09-26', 'Rahul. Kumar', 'Need to shift. car'),
-(420, '1', '412', 'Banglore', 'Chennai', '2022-09-27', 'Amit Singh', 'Need to shift all office items');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
-
-CREATE TABLE `roles` (
-  `roles_id` int(11) NOT NULL,
-  `roles_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `roles`
---
-
-INSERT INTO `roles` (`roles_id`, `roles_name`) VALUES
-(2, 'Employee');
 
 -- --------------------------------------------------------
 
@@ -360,30 +295,6 @@ INSERT INTO `saluation` (`saluation_id`, `saluation_name`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `services`
---
-
-CREATE TABLE `services` (
-  `services_id` int(11) NOT NULL,
-  `services_name` varchar(255) DEFAULT NULL,
-  `services_description` text,
-  `services_status` varchar(255) DEFAULT NULL,
-  `services_image` longblob,
-  `services_image_filename` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `services`
---
-
-INSERT INTO `services` (`services_id`, `services_name`, `services_description`, `services_status`, `services_image`, `services_image_filename`) VALUES
-(410, 'Car Transport', 'The Packers Movers (thepackersmovers.com) is one of the India’s leading reputed online moving companies booking platforms.', 'Deactive', NULL, '1664031838_car.jpg'),
-(411, 'House Furniture', 'The Packers Movers (thepackersmovers.com) is one of the India’s leading reputed online moving companies booking platforms.', 'Active', NULL, '1664105659_furniture.jpg'),
-(412, 'Office Shifting', 'The Packers Movers (thepackersmovers.com) is one of the India’s leading reputed online moving companies booking platforms.', 'Active', NULL, '1664031856_office.jpg'),
-(413, 'Packers and Moovers', 'The Packers Movers (thepackersmovers.com) is one of the India’s leading reputed online moving companies booking platforms.', 'Active', NULL, '1664031917_packers.jpg');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `state`
@@ -493,17 +404,6 @@ ALTER TABLE `login`
 ALTER TABLE `month`
   ADD PRIMARY KEY (`month_id`);
 
---
--- Indexes for table `quotation`
---
-ALTER TABLE `quotation`
-  ADD PRIMARY KEY (`quotation_id`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`roles_id`);
 
 --
 -- Indexes for table `salary`
@@ -517,11 +417,6 @@ ALTER TABLE `salary`
 ALTER TABLE `saluation`
   ADD PRIMARY KEY (`saluation_id`);
 
---
--- Indexes for table `services`
---
-ALTER TABLE `services`
-  ADD PRIMARY KEY (`services_id`);
 
 --
 -- Indexes for table `state`
@@ -587,17 +482,7 @@ ALTER TABLE `login`
 ALTER TABLE `month`
   MODIFY `month_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
---
--- AUTO_INCREMENT for table `quotation`
---
-ALTER TABLE `quotation`
-  MODIFY `quotation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=421;
 
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `roles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `salary`
@@ -610,12 +495,6 @@ ALTER TABLE `salary`
 --
 ALTER TABLE `saluation`
   MODIFY `saluation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `services`
---
-ALTER TABLE `services`
-  MODIFY `services_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=414;
 
 --
 -- AUTO_INCREMENT for table `state`

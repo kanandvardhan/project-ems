@@ -79,11 +79,11 @@ export default function Team() {
 
         <div class="album py-5 bg-light">
           {/* container */}
-          <div class="container">
+          <div class="">
             <div class="row team">
               {team.map((item, idx) => (
                 // col-md-5
-                <div class="col-md-5 team-card">
+                <div class="col-md-4 team-card">
                   <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static">
                       <strong class="d-inline-block mb-2 text-primary">
