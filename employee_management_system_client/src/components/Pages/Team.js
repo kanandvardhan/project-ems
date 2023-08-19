@@ -1,6 +1,48 @@
 import React from "react";
 
 export default function Team() {
+  const team = [
+    {
+      name: "Kudipudi Sai Anand Vardhan",
+      rollNo: 230350320051,
+      quote: "You are the creator of your own destiny.",
+      linkedin: "https://www.linkedin.com/in/kanandvardhan/",
+      roll: "",
+      image: "Anand",
+    },
+    {
+      name: "Sagar Kottagattu",
+      rollNo: 230350320050,
+      quote: "Believe in yourself and you'll be unstoppable.",
+      linkedin: "https://www.linkedin.com/in/sagar-kottagattu-01827345/",
+      roll: "",
+      image: "Sagar",
+    },
+    {
+      name: "Lopes Lobo Leola Leonor",
+      rollNo: 2303503200,
+      quote: "Direction and consistency are of utmost importance.",
+      linkedin: "https://www.linkedin.com/in/leola-lopes-lobo-a51390239/",
+      roll: "",
+      image: "Leola",
+    },
+    {
+      name: "Khairnar Vivek Ramdas",
+      rollNo: 2303503200,
+      quote: "Success is a journey, not a destination.",
+      linkedin: "https://www.linkedin.com/in//",
+      roll: "",
+      image: "Vivek",
+    },
+    {
+      name: "Khalid Ali Siddiqui",
+      rollNo: 2303503200,
+      quote: "The only way to do great work is to love what you do.",
+      linkedin: "https://www.linkedin.com/in//",
+      roll: "",
+      image: "Khalid",
+    },
+  ];
   return (
     <main className="container-container">
       <section id="inner-headline">
@@ -36,224 +78,37 @@ export default function Team() {
         <hr />
 
         <div class="album py-5 bg-light">
+          {/* container */}
           <div class="container">
             <div class="row team">
-              <div class="col-md-5 team-card">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                      World
-                    </strong>
-                    <h3 class="mb-0">Name</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content.(Lil Description)
-                    </p>
-                    <a href="#" class="stretched-link">
-                      Continue reading (Work)
-                    </a>
-                  </div>
-                  <div class="col-auto d-none d-lg-block">
-                    <svg
-                      class="bd-placeholder-img"
-                      width="200"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c" />
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Your Photo
-                      </text>
-                    </svg>
+              {team.map((item, idx) => (
+                // col-md-5
+                <div class="col-md-5 team-card">
+                  <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">
+                        Team
+                      </strong>
+                      <h3 class="mb-0">{item.name}</h3>
+                      <p>({item.rollNo})</p>
+                      {/* <div class="mb-1 text-muted">230350320051</div> */}
+                      <p class="card-text mb-auto">"{item.quote}"</p>
+                      <a href={item.linkedin} class="stretched-link">
+                        Profile
+                      </a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                      <img
+                        className="thumbnail"
+                        width="200"
+                        height="250"
+                        alt={item.name}
+                        src={require(`../../img/${item.image}.webp`)}
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-5 team-card">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                      World
-                    </strong>
-                    <h3 class="mb-0">Name</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content.(Lil Description)
-                    </p>
-                    <a href="#" class="stretched-link">
-                      Continue reading (Work)
-                    </a>
-                  </div>
-                  <div class="col-auto d-none d-lg-block">
-                    <svg
-                      class="bd-placeholder-img"
-                      width="200"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c" />
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Your Photo
-                      </text>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 team-card">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                      World
-                    </strong>
-                    <h3 class="mb-0">Name</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content.(Lil Description)
-                    </p>
-                    <a href="#" class="stretched-link">
-                      Continue reading (Work)
-                    </a>
-                  </div>
-                  <div class="col-auto d-none d-lg-block">
-                    <svg
-                      class="bd-placeholder-img"
-                      width="200"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c" />
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Your Photo
-                      </text>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 team-card">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                      World
-                    </strong>
-                    <h3 class="mb-0">Name</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content.(Lil Description)
-                    </p>
-                    <a href="#" class="stretched-link">
-                      Continue reading (Work)
-                    </a>
-                  </div>
-                  <div class="col-auto d-none d-lg-block">
-                    <svg
-                      class="bd-placeholder-img"
-                      width="200"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c" />
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Your Photo
-                      </text>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 team-card">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                      World
-                    </strong>
-                    <h3 class="mb-0">Name</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content.(Lil Description)
-                    </p>
-                    <a href="#" class="stretched-link">
-                      Continue reading (Work)
-                    </a>
-                  </div>
-                  <div class="col-auto d-none d-lg-block">
-                    <svg
-                      class="bd-placeholder-img"
-                      width="200"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c" />
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Your Photo
-                      </text>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 team-card">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                  <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary">
-                      World
-                    </strong>
-                    <h3 class="mb-0">Name</h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content.(Lil Description)
-                    </p>
-                    <a href="#" class="stretched-link">
-                      Continue reading (Work)
-                    </a>
-                  </div>
-                  <div class="col-auto d-none d-lg-block">
-                    <svg
-                      class="bd-placeholder-img"
-                      width="200"
-                      height="250"
-                      xmlns="http://www.w3.org/2000/svg"
-                      role="img"
-                      aria-label="Placeholder: Thumbnail"
-                      preserveAspectRatio="xMidYMid slice"
-                      focusable="false"
-                    >
-                      <title>Placeholder</title>
-                      <rect width="100%" height="100%" fill="#55595c" />
-                      <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                        Your Photo
-                      </text>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
