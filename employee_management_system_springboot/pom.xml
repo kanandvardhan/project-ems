@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.guides.springboot2</groupId>
-	<artifactId>online_shopping_system</artifactId>
+	<artifactId>employee_management_system</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 
-	<name>online_shopping_system</name>
-	<description>online Shopping System</description>
+	<name>employee_management_system</name>
+	<description>employee_management_system</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
