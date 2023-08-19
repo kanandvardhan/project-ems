@@ -20,7 +20,7 @@ export default function Team() {
     },
     {
       name: "Lopes Lobo Leola Leonor",
-      rollNo: 2303503200,
+      rollNo: 230350320054,
       quote: "Direction and consistency are of utmost importance.",
       linkedin: "https://www.linkedin.com/in/leola-lopes-lobo-a51390239/",
       roll: "",
@@ -28,7 +28,7 @@ export default function Team() {
     },
     {
       name: "Khairnar Vivek Ramdas",
-      rollNo: 2303503200,
+      rollNo: 230350320045,
       quote: "Success is a journey, not a destination.",
       linkedin: "https://www.linkedin.com/in/vivek-khairnar-10449626b",
       roll: "",
@@ -36,7 +36,7 @@ export default function Team() {
     },
     {
       name: "Khalid Ali Siddiqui",
-      rollNo: 2303503200,
+      rollNo: 230350320046,
       quote: "The only way to do great work is to love what you do.",
       linkedin: "https://www.linkedin.com/in/khalid-siddiqui-b1b4a057",
       roll: "",

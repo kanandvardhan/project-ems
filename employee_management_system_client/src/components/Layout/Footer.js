@@ -15,7 +15,7 @@ return (
             <div className="col-lg-6">
                <div className="copyright">
                   <p>
-                     <span>&copy; Employee Administration system</span>
+                     <span>&copy; Employee Management system</span>
                   </p>
                </div>
             </div>
