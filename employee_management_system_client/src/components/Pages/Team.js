@@ -93,7 +93,7 @@ export default function Team() {
                       <p>({item.rollNo})</p>
                       {/* <div class="mb-1 text-muted">230350320051</div> */}
                       <p class="card-text mb-auto">"{item.quote}"</p>
-                      <a href={item.linkedin} class="stretched-link">
+                      <a href={item.linkedin} target="_blank" class="stretched-link">
                         Profile
                       </a>
                     </div>
