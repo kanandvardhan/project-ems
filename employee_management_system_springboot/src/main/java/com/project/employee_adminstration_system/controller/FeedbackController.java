@@ -66,12 +66,12 @@ public class FeedbackController {
 
 	@GetMapping("/feedback/search/{name}")
 	public List<Feedback> getFeedbackByName(@PathVariable(value = "name") String feedbackName) {
-			return feedbackRepository.serchUserByName(feedbackName);
+			return feedbackRepository.searchUserByName(feedbackName);
 	}
 	
 	@GetMapping("/feedback/search-state/{state}")
-	public List<Feedback> serchUserByState(@PathVariable(value = "state") String feedbackState) {
-			return feedbackRepository.serchUserByState(feedbackState);
+	public List<Feedback> searchUserByState(@PathVariable(value = "state") String feedbackState) {
+			return feedbackRepository.searchUserByState(feedbackState);
 	}
 	
 	

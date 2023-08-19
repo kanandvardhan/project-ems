@@ -64,12 +64,12 @@ public class SalaryController {
 
 	@GetMapping("/salaries/search/{name}")
 	public List<Salary> getSalaryByName(@PathVariable(value = "name") String salaryName) {
-			return salaryRepository.serchUserByName(salaryName);
+			return salaryRepository.searchUserByName(salaryName);
 	}
 	
 	@GetMapping("/salaries/search-state/{state}")
 	public List<Salary> serchUserByState(@PathVariable(value = "state") String salaryState) {
-			return salaryRepository.serchUserByState(salaryState);
+			return salaryRepository.searchUserByState(salaryState);
 	}
 	
 	@GetMapping("/salaries/all-salaries/{id}")

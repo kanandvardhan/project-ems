@@ -44,7 +44,7 @@ public class LoginController {
 	
 	@GetMapping("/login/check-username/{username}")
 	public List<Login> checkUserNameExits(@PathVariable(value = "username") String username) {
-			return loginRepository.serchUserByName(username);
+			return loginRepository.searchUserByName(username);
 	}
 	
 	
@@ -91,36 +91,11 @@ public class LoginController {
 	}
 	
 
-/*	@PostMapping("/login")
-    public ResponseEntity<JwtResponse> login(@RequestBody LoginForm loginForm) {
-        // throws Exception if authentication failed
-
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword()));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String jwt = jwtProvider.generate(authentication);
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            User user = userService.findOne(userDetails.getUsername());
-            return ResponseEntity.ok(new JwtResponse(jwt, user.getEmail(), user.getName(), user.getRole()));
-        } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-    }
-*/
-//	@PostMapping("/login")
-//	public Login checkLogin(@Valid @RequestBody Login login) {
-//		Login loginObj = loginRepository.checkLogin(login.getLogin_email(), login.getLogin_password());
-//		
-//		return loginRepository.checkLogin(login.getLogin_email(), login.getLogin_password());
-//	}
-
 	
 	@PostMapping("/login")
 	public ArrayList checkLogin(@Valid @RequestBody Login login) {
 		Login loginObj = loginRepository.checkLogin(login.getLogin_email(), login.getLogin_password());
 		
 		return this.getLoginData(loginObj.getLogin_id());
-//		return loginRepository.checkLogin(login.getLogin_email(), login.getLogin_password());
 	}
 }

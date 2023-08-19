@@ -15,7 +15,7 @@ public interface LoginRepository extends JpaRepository<Login, Long> {
 	public Login checkLogin(String login_email, String login_password);
 	
 	@Query(value = "SELECT * FROM login WHERE login_email = ?1", nativeQuery = true)
-	public List<Login> serchUserByName(String username);
+	public List<Login> searchUserByName(String username);
 	
 	
 
