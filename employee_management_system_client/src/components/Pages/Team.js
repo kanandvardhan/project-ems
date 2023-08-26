@@ -60,9 +60,11 @@ export default function Team() {
             <div class="col-lg-12 col-md-8">
               <h1 class="fw-light">Us, Who made this possible</h1>
               <p class="lead text-muted">
-                Something short and leading about the collection below—its
+                {/* Something short and leading about the collection below—its
                 contents, the creator, etc. Make it short and sweet, but not too
-                short so folks don’t simply skip over it entirely.
+                short so folks don’t simply skip over it entirely. */}
+                Dive into the remarkable collection below, a tribute to 'Us' –
+                the ingenious minds that brought forth the extraordinary.
               </p>
               {/* <p>
                 <a href="#" class="btn btn-primary my-2">
@@ -93,7 +95,11 @@ export default function Team() {
                       <p>({item.rollNo})</p>
                       {/* <div class="mb-1 text-muted">230350320051</div> */}
                       <p class="card-text mb-auto">"{item.quote}"</p>
-                      <a href={item.linkedin} target="_blank" class="stretched-link">
+                      <a
+                        href={item.linkedin}
+                        target="_blank"
+                        class="stretched-link"
+                      >
                         Profile
                       </a>
                     </div>
