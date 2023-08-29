@@ -7,6 +7,7 @@ import { register } from "../../actions/auth";
 import { useSearchParams, useNavigate, useParams } from "react-router-dom";
 
 import axios from "axios";
+import { useAlert } from "react-alert";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const navigate = useNavigate();
@@ -76,6 +77,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       </li>
     </ul>
   );
+  const alert = useAlert();
 
   return (
     <section className="container-container">
@@ -83,7 +85,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
-              <h2 className="pageTitle">
+              <h2
+                className="pageTitle"
+                onClick={() => {
+                  alert.success("It's ok now!");
+                }}
+              >
                 <Fragment>
                   {window.sessionStorage.getItem("user_level_id") == "1"
                     ? "Admin Dashboard"

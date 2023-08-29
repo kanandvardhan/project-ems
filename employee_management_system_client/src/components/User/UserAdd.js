@@ -10,10 +10,12 @@ import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
 import config from "../../utils/config";
+import { useAlert } from "react-alert";
 
 const UserAdd = ({ setAlert, user, isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const alert = useAlert();
 
   const today = new Date();
   today.setFullYear(today.getFullYear() - 18);
@@ -60,6 +62,27 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
     user_mobile: "",
     user_nationalty: "",
   });
+
+  function reset() {
+    setFormData({
+      user_id: "",
+      user_level_id: "",
+      user_email: "",
+      user_password: "",
+      user_confirm_password: "",
+      user_first_name: "",
+      user_last_name: "",
+      user_dob: "",
+      user_address: "",
+      user_city: "",
+      user_state: "",
+      user_country: "",
+      user_mobile: "",
+      user_nationalty: "",
+    });
+  }
+
+  var isUser = window.sessionStorage.getItem("user_level_id") === "2";
 
   useEffect(() => {
     if (location.state != null) {
@@ -142,12 +165,16 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
               //handle success
               console.log("Success  : ");
               console.log(response);
-              navigate("/login", {
-                state: {
-                  msg: "An Employee account has been successfully registered.",
-                  error_type: "alert-success",
-                },
-              });
+              alert.success(
+                "An Employee account has been successfully registered."
+              );
+              navigate("/Dashboard");
+              // navigate("/login", {
+              //   state: {
+              //     msg: "An Employee account has been successfully registered.",
+              //     error_type: "alert-success",
+              //   },
+              // });
               // navigate("/UserLogin")
             })
             .catch(function (response) {
@@ -225,6 +252,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                               onChange={(e) => onChange(e)}
                               className="form-control"
                               required
+                              disabled={isUser}
                             >
                               <option>Register As</option>
                               {roleDropDown.map((option, idx) => (
@@ -398,7 +426,11 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                           Submit
                         </button>
                         &nbsp;&nbsp;
-                        <button type="reset" className="btn btn-danger">
+                        <button
+                          type="reset"
+                          onClick={reset}
+                          className="btn btn-danger"
+                        >
                           Reset
                         </button>
                       </div>

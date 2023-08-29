@@ -5,6 +5,7 @@ import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
 import config from "../../utils/config";
+import { useAlert } from "react-alert";
 
 const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
   const minDate = tomorrow.toISOString().split("T")[0];
+  const alert = useAlert();
 
   let { id } = useParams();
 
@@ -45,6 +47,19 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
     leave_total_days: "",
   });
 
+  const reset = () => {
+    setFormData({
+      leave_id: "",
+      leave_employee_id: "",
+      leave_reason: "",
+      leave_description: "",
+      leave_from_date: "",
+      leave_to_date: "",
+      leave_status: "",
+      leave_total_days: "",
+    });
+  };
+
   useEffect(() => {
     if (id) {
       axios.get(`${config.api_url}/leaves/${id}`).then((res) => {
@@ -66,25 +81,6 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
     });
   }, [formData.leave_employee_id]);
 
-  // Handlinng Change Event
-  //   const onChange = (e) => {
-  //     setFormData({ ...formData, [e.target.name]: e.target.value });
-  //     console.log(formData);
-  //     // Calculate total days ////
-  //     if (
-  //       e.target.name == "leave_from_date" ||
-  //       e.target.name == "leave_to_date"
-  //     ) {
-  //       console.log(formData);
-  //       let from_date = new Date(formData.leave_from_date);
-  //       let to_date = new Date(formData.leave_to_date);
-  //       let differnce_time = to_date.getTime() - from_date.getTime();
-  //       let total_days = Math.abs(differnce_time / (1000 * 3600 * 24)) + 1; //Diference in Days
-  //       total_days = Math.floor(total_days);
-  //       alert(total_days.toString());
-  //     }
-  //   };
-
   const onChange = (e) => {
     const { name, value } = e.target;
 
@@ -103,9 +99,9 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
     let toDateObj = new Date(toDate);
     let timeDiff = toDateObj.getTime() - fromDateObj.getTime();
     let dayMilliSeconds = 1000 * 60 * 60 * 24;
-    let totalDays = timeDiff / dayMilliSeconds;
+    let totalDays = timeDiff / dayMilliSeconds + 1;
     if (totalDays <= 0) {
-      alert("PLEASE ENTER CORRECT FROM AND TO DATES.");
+      alert.error("PLEASE ENTER CORRECT FROM AND TO DATES.");
       return;
     }
     console.log(totalDays);
@@ -124,6 +120,8 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
     totaldays();
   }, [formData.leave_from_date, formData.leave_to_date]);
 
+  const isUser = window.sessionStorage.getItem("user_level_id") === 2;
+
   // Handling Submit
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -138,6 +136,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
           //handle success
           console.log("Success  : ");
           console.log(response);
+          alert.success("Leave Updated Successfully!");
           navigate("/leave-report");
           setMessage({
             show_message: true,
@@ -147,6 +146,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
         })
         .catch(function (response) {
           //handle error
+          alert.error("Something went wrong, Please try again later");
           console.log("Error  : ");
           console.log(response);
         });
@@ -160,6 +160,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
           //handle success
           console.log("Success  : ");
           console.log(response);
+          alert.success("Leave Added Successfully!");
           navigate("/leave-report");
           setMessage({
             show_message: true,
@@ -179,6 +180,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
         })
         .catch(function (response) {
           //handle error
+          alert.error("Something went wrong, Please try again later");
           console.log("Error  : ");
           console.log(response);
         });
@@ -331,7 +333,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                               window.sessionStorage.getItem("user_level_id") !==
                               "2"
                             }
-                            min={formData.leave_to_date}
+                            min={formData.leave_from_date}
                             required
                           />
                         </div>
@@ -385,9 +387,15 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             Submit
                           </button>
                           &nbsp;&nbsp;
-                          <button type="reset" className="btn btn-danger">
-                            Reset
-                          </button>
+                          {isUser && (
+                            <button
+                              type="reset"
+                              onClick={reset}
+                              className="btn btn-danger"
+                            >
+                              Reset
+                            </button>
+                          )}
                         </div>
                       </div>
                     </form>

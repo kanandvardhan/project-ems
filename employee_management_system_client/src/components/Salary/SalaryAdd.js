@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useSearchParams, useNavigate, useParams } from "react-router-dom";
+import {
+  useSearchParams,
+  useNavigate,
+  useParams,
+  Link,
+} from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
@@ -75,6 +80,27 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     salary_total: "",
     salary_dedc: "",
   });
+
+  function reset() {
+    setFormData({
+      salary_employee_id: "",
+      salary_month: "",
+      salary_working_days: "",
+      salary_basic: "",
+      salary_hra: "",
+      salary_mediclaim: "",
+      salary_ta: "",
+      salary_da: "",
+      salary_reimbursement: "",
+      salary_ca: "",
+      salary_others: "",
+      salary_dpf: "",
+      salary_dtax: "",
+      salary_desc: "",
+      salary_total: "",
+      salary_dedc: "",
+    });
+  }
 
   const calculateTotalSalary = () => {
     const {
@@ -190,6 +216,8 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     }
   };
 
+  let isUser = window.sessionStorage.getItem("user_level_id") === "2";
+
   return (
     <section className="container-container">
       <section id="inner-headline">
@@ -233,6 +261,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <select
+                            disabled={isUser}
                             name="salary_employee_id"
                             value={formData.salary_employee_id}
                             onChange={(e) => onChange(e)}
@@ -256,6 +285,8 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <select
+                            disabled={isUser}
+                            required
                             name="salary_month"
                             value={formData.salary_month}
                             onChange={(e) => onChange(e)}
@@ -279,6 +310,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_working_days}
                             onChange={(e) => onChange(e)}
@@ -299,6 +331,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_basic}
                             onChange={(e) => onChange(e)}
@@ -319,6 +352,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_hra}
                             onChange={(e) => onChange(e)}
@@ -339,6 +373,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_mediclaim}
                             onChange={(e) => onChange(e)}
@@ -359,6 +394,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_ta}
                             onChange={(e) => onChange(e)}
@@ -379,6 +415,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_da}
                             onChange={(e) => onChange(e)}
@@ -399,6 +436,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_reimbursement}
                             onChange={(e) => onChange(e)}
@@ -419,6 +457,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_ca}
                             onChange={(e) => onChange(e)}
@@ -439,6 +478,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_others}
                             onChange={(e) => onChange(e)}
@@ -459,6 +499,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_dpf}
                             onChange={(e) => onChange(e)}
@@ -479,6 +520,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="number"
                             value={formData.salary_dtax}
                             onChange={(e) => onChange(e)}
@@ -541,6 +583,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <textarea
+                            disabled={isUser}
                             name="salary_desc"
                             onChange={(e) => onChange(e)}
                             className="form-control"
@@ -559,6 +602,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                         </label>
                         <div className="col-sm-8">
                           <input
+                            disabled={isUser}
                             type="file"
                             value={formData.salary_slip}
                             onChange={(e) => onFileChange(e)}
@@ -570,13 +614,26 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                       </div>
                       <div className="form-group">
                         <div className="col-sm-offset-4 col-sm-8">
-                          <button type="submit" className="btn btn-default">
-                            Submit
-                          </button>
+                          {isUser && (
+                            <Link to="/salary-report">
+                              <button className="btn btn-default">Back</button>
+                            </Link>
+                          )}
+                          {!isUser && (
+                            <button type="submit" className="btn btn-default">
+                              Submit
+                            </button>
+                          )}
                           &nbsp;&nbsp;
-                          <button type="reset" className="btn btn-danger">
-                            Reset
-                          </button>
+                          {!isUser && (
+                            <button
+                              type="reset"
+                              onClick={reset}
+                              className="btn btn-danger"
+                            >
+                              Reset
+                            </button>
+                          )}
                         </div>
                       </div>
                       <input

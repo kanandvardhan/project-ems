@@ -72,6 +72,10 @@ export default class SalaryReport extends React.Component {
     });
   }
 
+  isUser() {
+    return window.sessionStorage.getItem("user_level_id") === 2;
+  }
+
   render() {
     return (
       <section className="container-container">
@@ -127,7 +131,14 @@ export default class SalaryReport extends React.Component {
                       <td>{salary.salary_total}</td>
                       <td>
                         <Link to={"/salary-add/" + salary.salary_id}>
-                          <span className="glyphicon glyphicon-edit editi"></span>
+                          <span
+                            className={`glyphicon glyphicon-${
+                              window.sessionStorage.getItem("user_level_id") !==
+                              2
+                                ? "share"
+                                : "edit"
+                            } editi`}
+                          ></span>
                         </Link>
                         &nbsp;&nbsp;
                         <a

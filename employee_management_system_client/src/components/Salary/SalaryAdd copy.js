@@ -5,6 +5,7 @@ import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
 import config from "../../utils/config";
+import { useAlert } from "react-alert";
 
 const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
   let { url } = `${config.api_url}/save-salaries`;
@@ -140,10 +141,12 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
           //handle success
           console.log("Success  : ");
           console.log(response);
+          alert.success("Salary Added Successfully!");
           navigate("/salary-report");
         })
         .catch(function (response) {
           //handle error
+          alert.error("Something went wrong, Please try again");
           console.log("Error  : ");
           console.log(response);
         });
@@ -167,6 +170,8 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
         });
     }
   };
+
+  const alert = useAlert();
 
   return (
     <section className="container-container">
