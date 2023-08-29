@@ -10,12 +10,14 @@ import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
 import config from "../../utils/config";
+import { useAlert } from "react-alert";
 
 const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
   let { url } = `${config.api_url}/save-salaries`;
   const navigate = useNavigate();
   // Function for edit //
   let { id } = useParams();
+  const alert = useAlert();
 
   const [userDropDown, setuserDropDown] = useState([
     {
@@ -133,17 +135,6 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     return { total, salaryNegative };
   };
 
-  // useEffect(() => {
-  //   const { total, salaryNegative } = calculateTotalSalary();
-
-  //   setFormData({
-  //     ...formData,
-  //     salary_total: total,
-  //     salary_dedc: salaryNegative,
-  //   });
-  // }),
-  //   [formData.salary_total];
-
   // Handlinng Change Event
   const onChange = (e) => {
     const fieldName = e.target.name;
@@ -206,10 +197,12 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
           //handle success
           console.log("Success  : ");
           console.log(response);
+          alert.success("Salary Added Successfully!");
           navigate("/salary-report");
         })
         .catch(function (response) {
           //handle error
+          alert.error("Something went wrong, Please try again later");
           console.log("Error  : ");
           console.log(response);
         });
