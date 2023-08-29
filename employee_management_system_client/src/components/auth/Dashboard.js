@@ -4,9 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import { register } from "../../actions/auth";
-import { useSearchParams, useNavigate, useParams } from "react-router-dom";
-
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const navigate = useNavigate();
