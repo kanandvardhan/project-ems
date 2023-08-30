@@ -5,6 +5,7 @@ import {
   useNavigate,
   useParams,
   useLocation,
+  Link,
 } from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
@@ -487,6 +488,12 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                         >
                           Reset
                         </button>
+                        &nbsp;&nbsp;
+                        <Link to={`${isUser ? "/Dashboard" : "/user-report"}`}>
+                          <button type="submit" className="btn btn-success">
+                            Back
+                          </button>
+                        </Link>
                       </div>
                     </form>
                   </div>
