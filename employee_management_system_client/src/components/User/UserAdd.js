@@ -20,7 +20,6 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
   const today = new Date();
   today.setFullYear(today.getFullYear() - 18);
   const maxDate = today.toISOString().split("T")[0];
-  console.log(maxDate);
 
   let page_heading = "Employee Registrations";
 
@@ -44,6 +43,20 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
     error_type: "",
     msg: "",
   });
+
+  const [countryDropDown, setCountryDropDown] = useState([
+    {
+      country_id: "",
+      country_name: "",
+    },
+  ]);
+
+  const [stateDropDown, setStateDropDown] = useState([
+    {
+      state_id: "",
+      state_name: "",
+    },
+  ]);
 
   // Creating FormData Form elements ////
   const [formData, setFormData] = useState({
@@ -101,7 +114,19 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
       });
     }
 
-    // Get  Blood Group Dropdown
+    // Get Country Dropdown
+    axios.get(`${config.api_url}/countries`).then((res) => {
+      console.log(res.data);
+      setCountryDropDown(res.data);
+    });
+
+    // Get State Dropdown
+    axios.get(`${config.api_url}/states`).then((res) => {
+      console.log(res.data);
+      setStateDropDown(res.data);
+    });
+
+    // Get Blood Group Dropdown
     axios.get(`${config.api_url}/roles`).then((res) => {
       setroleDropDown(res.data);
     });
@@ -183,10 +208,11 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
               console.log(response);
             });
         } else {
+          alert.error("Email ID already exists.");
           setMessage({
             show_message: true,
             error_type: "alert-danger",
-            msg: "Email ID already exits. Kindly choose another email ID or login !!!",
+            msg: "Email ID already exists. Kindly choose another email ID or login !!!",
           });
         }
       });
@@ -398,7 +424,22 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       <div className="row">
                         <div className="col">
                           <label htmlFor="name">State</label>
-                          <input
+                          <select
+                            required
+                            id="user_state"
+                            name="user_state"
+                            value={formData.user_state}
+                            onChange={(e) => onChange(e)}
+                            className="form-control"
+                          >
+                            <option>Select State</option>
+                            {stateDropDown.map((option, id) => (
+                              <option key={id} value={option.state_id}>
+                                {option.state_name}
+                              </option>
+                            ))}
+                          </select>
+                          {/* <input
                             type="text"
                             className="form-control"
                             id="user_state"
@@ -406,11 +447,26 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                             name="user_state"
                             value={formData.user_state}
                             onChange={(e) => onChange(e)}
-                          />
+                          /> */}
                         </div>
                         <div className="col">
                           <label htmlFor="name">Country</label>
-                          <input
+                          <select
+                            id="user_state"
+                            required
+                            name="user_country"
+                            value={formData.user_country}
+                            onChange={(e) => onChange(e)}
+                            className="form-control"
+                          >
+                            <option>Select Country</option>
+                            {countryDropDown.map((option, id) => (
+                              <option key={id} value={option.country_id}>
+                                {option.country_name}
+                              </option>
+                            ))}
+                          </select>
+                          {/* <input
                             type="text"
                             className="form-control"
                             id="user_country"
@@ -418,7 +474,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                             name="user_country"
                             value={formData.user_country}
                             onChange={(e) => onChange(e)}
-                          />
+                          />*/}
                         </div>
                       </div>
                       <div className="lgbtn">

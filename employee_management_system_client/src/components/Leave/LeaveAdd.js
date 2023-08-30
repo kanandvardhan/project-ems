@@ -260,8 +260,10 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             required
                             onChange={(e) => onChange(e)}
                           >
-                            <option>Leave Status</option>
-                            <option value="Pending">Pending</option>
+                            <option disabled>Leave Status</option>
+                            <option defaultValue={true} value="Pending">
+                              Pending
+                            </option>
                             <option value="Approved">Approved</option>
                             <option value="Disapproved">Disapproved</option>
                           </select>

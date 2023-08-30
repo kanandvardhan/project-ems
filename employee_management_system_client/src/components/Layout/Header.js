@@ -4,17 +4,23 @@ import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { useSearchParams, useNavigate, useParams } from "react-router-dom";
 import { LOGOUT } from "../../actions/types";
+import { useAlert } from "react-alert";
 
 const Header = () => {
   const navigate = useNavigate();
   const username = window.sessionStorage.getItem("user_name");
+  const alert = useAlert();
 
   function logout() {
+    const isUser = window.sessionStorage.getItem("user_level_id") == 2;
+    const user = isUser ? "/UserLogin" : "/Login";
+    alert.success("You have logged out Successfully.");
+
     window.sessionStorage.removeItem("user");
     window.sessionStorage.removeItem("user_id");
     window.sessionStorage.removeItem("user_level_id");
     window.sessionStorage.removeItem("user_name");
-    navigate("/UserLogin", {
+    navigate(user, {
       state: {
         msg: "Your have logged out successully !!!.",
         error_type: "alert-success",

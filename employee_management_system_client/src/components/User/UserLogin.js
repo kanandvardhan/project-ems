@@ -10,10 +10,12 @@ import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
 import config from "../../utils/config";
+import { useAlert } from "react-alert";
 
 const Login = ({ login, isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const alert = useAlert();
 
   // Alert message for displaying success and error ////
   const [message, setMessage] = useState({
@@ -69,8 +71,20 @@ const Login = ({ login, isAuthenticated }) => {
             "user_name",
             response.data.user_first_name + " " + response.data.user_last_name
           );
+          // checks if admin
+          if (response.data.user_level_id == 1) {
+            alert.error("You are trying to login through Users-Login.");
+            setMessage({
+              show_message: true,
+              error_type: "alert-danger",
+              msg: "You are trying to login through Users-Login.",
+            });
+            return;
+          }
           navigate("/dashboard");
         } else {
+          alert.error("Invalid Username or Password");
+
           setMessage({
             show_message: true,
             error_type: "alert-danger",

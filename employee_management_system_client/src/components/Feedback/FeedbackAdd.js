@@ -27,6 +27,16 @@ const FeedbackAdd = ({ setAlert, feedback, isAuthenticated }) => {
     feedback_message: "",
   });
 
+  const reset = () => {
+    setFormData({
+      feedback_id: "",
+      feedback_name: "",
+      feedback_email: "",
+      feedback_rating: "",
+      feedback_message: "",
+    });
+  };
+
   useEffect(() => {
     if (id) {
       axios.get(`${config.api_url}/feedback/${id}`).then((res) => {
@@ -217,7 +227,11 @@ const FeedbackAdd = ({ setAlert, feedback, isAuthenticated }) => {
                             Submit
                           </button>
                           &nbsp;&nbsp;
-                          <button type="reset" className="btn btn-danger">
+                          <button
+                            type="reset"
+                            onClick={reset}
+                            className="btn btn-danger"
+                          >
                             Reset
                           </button>
                         </div>

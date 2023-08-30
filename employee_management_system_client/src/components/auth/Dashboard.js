@@ -11,13 +11,24 @@ import { useAlert } from "react-alert";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const navigate = useNavigate();
+  const alert = useAlert();
 
   function logout() {
+    const isUser = window.sessionStorage.getItem("user_level_id") == 2;
+    const user = isUser ? "/UserLogin" : "/Login";
+    alert.success("You have logged out Successfully.");
+
     window.sessionStorage.removeItem("user");
     window.sessionStorage.removeItem("user_id");
     window.sessionStorage.removeItem("user_level_id");
     window.sessionStorage.removeItem("user_name");
-    navigate("/login");
+    navigate(user, {
+      state: {
+        msg: "Your have logged out successully !!!.",
+        error_type: "alert-success",
+      },
+    });
+    // navigate("/login");
   }
 
   const adminLinks = (
@@ -77,7 +88,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       </li>
     </ul>
   );
-  const alert = useAlert();
 
   return (
     <section className="container-container">

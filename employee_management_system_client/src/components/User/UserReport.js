@@ -90,9 +90,9 @@ export default class UserReport extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.users.map((user) => (
+                  {this.state.users.map((user, index) => (
                     <tr>
-                      <th scope="row">{user.user_id}</th>
+                      <th scope="row">{index + 1}</th>
                       <td>
                         {user.user_first_name} {user.user_last_name}
                       </td>

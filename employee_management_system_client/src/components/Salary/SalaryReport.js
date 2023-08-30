@@ -118,9 +118,9 @@ export default class SalaryReport extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.salarys.map((salary) => (
+                  {this.state.salarys.map((salary, index) => (
                     <tr>
-                      <th scope="row">{salary.salary_id}</th>
+                      <th scope="row">{index + 1}</th>
                       <td>
                         {salary.user_first_name} {salary.user_last_name}
                       </td>
@@ -135,8 +135,8 @@ export default class SalaryReport extends React.Component {
                             className={`glyphicon glyphicon-${
                               window.sessionStorage.getItem("user_level_id") !==
                               2
-                                ? "share"
-                                : "edit"
+                                ? "share "
+                                : "edit "
                             } editi`}
                           ></span>
                         </Link>

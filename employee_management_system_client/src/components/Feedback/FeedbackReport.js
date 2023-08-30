@@ -86,9 +86,9 @@ export default class FeedbackReport extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.feedbacks.map((feedback) => (
+                  {this.state.feedbacks.map((feedback, index) => (
                     <tr>
-                      <th scope="row">{feedback.feedback_id}</th>
+                      <th scope="row">{index + 1}</th>
                       <td>{feedback.feedback_name}</td>
                       <td>{feedback.feedback_email}</td>
                       <td>{feedback.feedback_rating} Star</td>

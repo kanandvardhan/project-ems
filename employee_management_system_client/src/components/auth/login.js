@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import config from "../../utils/config";
+import { useAlert } from "react-alert";
 
 const Login = ({ login, isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const alert = useAlert();
 
   // Alert message for displaying success and error ////
   const [message, setMessage] = useState({
@@ -44,31 +43,40 @@ const Login = ({ login, isAuthenticated }) => {
     // On submit //
     axios({
       method: "post",
-      url: `${config.api_url}/login`,
+      url: `${config.api_url}/user-login`,
       data: formData,
     })
       .then(function (response) {
         //handle success
         console.log("Success  : ");
 
-        console.log(response.data[0].login_id);
-        if (response.data[0].login_id) {
+        if (response.data.user_id) {
           console.log("I entered");
-          window.sessionStorage.setItem("user", response.data[0]);
-          window.sessionStorage.setItem(
-            "user_id",
-            response.data[0].employee_id
-          );
+          window.sessionStorage.setItem("user", response.data);
+          window.sessionStorage.setItem("user_id", response.data.user_id);
           window.sessionStorage.setItem(
             "user_level_id",
-            response.data[0].login_level_id
+            response.data.user_level_id
           );
           window.sessionStorage.setItem(
             "user_name",
-            response.data[0].employee_first_name
+            response.data.user_first_name
           );
+
+          // checks if user
+          if (response.data.user_level_id == 2) {
+            alert.error("You are trying to login through Admin-Login.");
+            setMessage({
+              show_message: true,
+              error_type: "alert-danger",
+              msg: "You are trying to login through Admin-Login.",
+            });
+            return;
+          }
           navigate("/dashboard");
         } else {
+          alert.error("Invalid Username or Password");
+
           setMessage({
             show_message: true,
             error_type: "alert-danger",
@@ -77,12 +85,14 @@ const Login = ({ login, isAuthenticated }) => {
         }
       })
       .catch(function (response) {
+        alert.error("Invalid Username or Password.");
         setMessage({
           show_message: true,
           error_type: "alert-danger",
           msg: "Invalid Username or Password. Kindly try again !!!!",
         });
         //handle error
+
         console.log("Error Response  : ");
         console.log(response);
       });

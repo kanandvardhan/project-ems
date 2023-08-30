@@ -107,9 +107,9 @@ export default class LeaveReport extends React.Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {this.state.leaves.map((leave) => (
+                  {this.state.leaves.map((leave, index) => (
                     <tr>
-                      <th scope="row">{leave.leave_id}</th>
+                      <th scope="row">{index + 1}</th>
                       <td>
                         {leave.user_first_name} {leave.user_last_name}
                       </td>

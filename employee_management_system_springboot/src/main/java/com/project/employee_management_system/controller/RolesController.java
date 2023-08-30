@@ -19,7 +19,7 @@ public class RolesController {
 	private RolesRepository rolesRepository;
 
 	@GetMapping("/roles")
-	public List<Roles> getAllRoless() {
+	public List<Roles> getAllRoles() {
 		return rolesRepository.findAll();
 	}
 }
