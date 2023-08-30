@@ -41,7 +41,7 @@ if (localStorage.token) {
 
 const options = {
   // you can also just use 'bottom center'
-  position: positions.TOP_RIGHT,
+  position: positions.MIDDLE_RIGHT,
   timeout: 5000,
   // offset: "30px",
   // you can also just use 'scale'
