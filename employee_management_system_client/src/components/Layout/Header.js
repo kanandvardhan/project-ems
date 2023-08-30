@@ -46,11 +46,11 @@ const Header = () => {
               Add New Employee
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link className="dropdown-item" to="/leave-add">
               Add New Leave
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link className="dropdown-item" to="/salary-add">
               Add New Salary
