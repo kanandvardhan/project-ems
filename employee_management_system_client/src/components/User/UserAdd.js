@@ -190,9 +190,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
               //handle success
               console.log("Success  : ");
               console.log(response);
-              alert.success(
-                "An Employee account has been successfully registered."
-              );
+              alert.success("An account has been successfully registered.");
               navigate("/Dashboard");
               // navigate("/login", {
               //   state: {

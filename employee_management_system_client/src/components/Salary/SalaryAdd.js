@@ -26,6 +26,10 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     },
   ]);
 
+  const filteredUsersDropDown = userDropDown.filter(
+    (user) => user.user_level_id !== "1"
+  );
+
   const [monthDropDown, setMonthDropDown] = useState([
     {
       salary_id: "",
@@ -261,11 +265,13 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                             className="form-control"
                           >
                             <option>Select User</option>
-                            {userDropDown.map((option, id) => (
-                              <option key={id} value={option.user_id}>
-                                {option.user_first_name} {option.user_last_name}
-                              </option>
-                            ))}
+                            {filteredUsersDropDown &&
+                              filteredUsersDropDown.map((option, id) => (
+                                <option key={id} value={option.user_id}>
+                                  {option.user_first_name}{" "}
+                                  {option.user_last_name}
+                                </option>
+                              ))}
                           </select>
                         </div>
                       </div>
