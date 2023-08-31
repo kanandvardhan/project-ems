@@ -55,7 +55,6 @@ const Login = ({ login, isAuthenticated }) => {
 
         if (response.data.user_id) {
           console.log("I entered");
-          dispatch(USER_LOAD);
           window.sessionStorage.setItem("user", response.data);
           window.sessionStorage.setItem("user_id", response.data.user_id);
           window.sessionStorage.setItem(
@@ -78,9 +77,9 @@ const Login = ({ login, isAuthenticated }) => {
             return;
           }
           navigate("/dashboard");
+          dispatch(USER_LOAD);
         } else {
           alert.error("Invalid Username or Password");
-          dispatch(LOGIN_FAIL);
           setMessage({
             show_message: true,
             error_type: "alert-danger",
@@ -96,9 +95,9 @@ const Login = ({ login, isAuthenticated }) => {
           msg: "Invalid Username or Password. Kindly try again !!!!",
         });
         //handle error
-
         console.log("Error Response  : ");
         console.log(response);
+        dispatch(LOGIN_FAIL);
       });
   };
 
