@@ -19,14 +19,12 @@ import Dashboard from "./components/auth/Dashboard";
 import UserReport from "./components/User/UserReport";
 import UserLogin from "./components/User/UserLogin";
 import UserAdd from "./components/User/UserAdd";
-import UserList from "./components/User/UserList";
 import UserDetails from "./components/User/UserDetails";
 import LeaveReport from "./components/Leave/LeaveReport";
 import LeaveAdd from "./components/Leave/LeaveAdd";
 import LeaveDetails from "./components/Leave/LeaveDetails";
 import FeedbackReport from "./components/Feedback/FeedbackReport";
 import FeedbackAdd from "./components/Feedback/FeedbackAdd";
-import FeedbackList from "./components/Feedback/FeedbackList";
 import FeedbackDetails from "./components/Feedback/FeedbackDetails";
 import SalaryReport from "./components/Salary/SalaryReport";
 import SalaryAdd from "./components/Salary/SalaryAdd";
@@ -78,13 +76,11 @@ const App = () => {
               <Route path="/register" element={<UserAdd />} />
               <Route path="/user-report" element={<UserReport />} />
               <Route path="/user-add/:id" element={<UserAdd />} />
-              <Route path="/packers-movers" element={<UserList />} />
               <Route path="/UserLogin" element={<UserLogin />} />
               <Route path="/user-details/:id" element={<UserDetails />} />
 
               <Route path="/feedback-report" element={<FeedbackReport />} />
               <Route path="/feedback" element={<FeedbackAdd />} />
-              <Route path="/feedback-list" element={<FeedbackList />} />
               <Route
                 path="/feedback-details/:id"
                 element={<FeedbackDetails />}
