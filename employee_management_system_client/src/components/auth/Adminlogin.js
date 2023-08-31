@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const { email, password } = formData;
@@ -50,7 +49,6 @@ const Login = ({ login, isAuthenticated }) => {
         </div>
         <input type="submit" className="btn btn-primary" value="Login" />
       </form>
-   
     </section>
   );
 };

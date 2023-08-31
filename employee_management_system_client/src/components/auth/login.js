@@ -3,11 +3,14 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import config from "../../utils/config";
 import { useAlert } from "react-alert";
+import { useDispatch } from "react-redux";
+import { LOGIN_FAIL, USER_LOAD } from "../../actions/types";
 
 const Login = ({ login, isAuthenticated }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const alert = useAlert();
+  const dispatch = useDispatch();
 
   // Alert message for displaying success and error ////
   const [message, setMessage] = useState({
@@ -52,6 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
 
         if (response.data.user_id) {
           console.log("I entered");
+          dispatch(USER_LOAD);
           window.sessionStorage.setItem("user", response.data);
           window.sessionStorage.setItem("user_id", response.data.user_id);
           window.sessionStorage.setItem(
@@ -76,7 +80,7 @@ const Login = ({ login, isAuthenticated }) => {
           navigate("/dashboard");
         } else {
           alert.error("Invalid Username or Password");
-
+          dispatch(LOGIN_FAIL);
           setMessage({
             show_message: true,
             error_type: "alert-danger",
