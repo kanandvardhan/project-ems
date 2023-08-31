@@ -77,7 +77,7 @@ const Login = ({ login, isAuthenticated }) => {
             return;
           }
           navigate("/dashboard");
-          dispatch(USER_LOAD);
+          // dispatch(USER_LOAD);
         } else {
           alert.error("Invalid Username or Password");
           setMessage({
@@ -97,7 +97,7 @@ const Login = ({ login, isAuthenticated }) => {
         //handle error
         console.log("Error Response  : ");
         console.log(response);
-        dispatch(LOGIN_FAIL);
+        // dispatch(LOGIN_FAIL);
       });
   };
 
