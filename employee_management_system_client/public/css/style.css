@@ -608,7 +608,7 @@ section.jumbobox {
 
 :root {
   --header: 82px;
-  --footer: 52px;
+  --footer: 52.4px;
 }
 
 .container-container {

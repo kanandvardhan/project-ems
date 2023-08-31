@@ -1,4 +1,11 @@
-
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Aug 31, 2023 at 07:43 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +33,7 @@ CREATE TABLE `contact` (
   `contact_email` varchar(255) NOT NULL,
   `contact_subject` text NOT NULL,
   `contact_message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `contact`
@@ -47,7 +54,7 @@ INSERT INTO `contact` (`contact_id`, `contact_name`, `contact_email`, `contact_s
 CREATE TABLE `country` (
   `country_id` int(11) NOT NULL,
   `country_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `country`
@@ -55,7 +62,9 @@ CREATE TABLE `country` (
 
 INSERT INTO `country` (`country_id`, `country_name`) VALUES
 (1, 'India'),
-(2, 'USA');
+(2, 'USA'),
+(3, 'UK'),
+(4, 'Russia');
 
 -- --------------------------------------------------------
 
@@ -66,7 +75,7 @@ INSERT INTO `country` (`country_id`, `country_name`) VALUES
 CREATE TABLE `department` (
   `department_id` int(11) NOT NULL,
   `department_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `department`
@@ -104,7 +113,7 @@ CREATE TABLE `employee` (
   `employee_nationalty` varchar(255) NOT NULL,
   `employee_qualification` text NOT NULL,
   `employee_history` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `employee`
@@ -128,16 +137,18 @@ CREATE TABLE `feedback` (
   `feedback_email` varchar(255) NOT NULL,
   `feedback_message` text NOT NULL,
   `feedback_rating` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `feedback`
 --
 
 INSERT INTO `feedback` (`feedback_id`, `feedback_name`, `feedback_email`, `feedback_message`, `feedback_rating`) VALUES
-(1, 'Amit Singh', 'amit@gmail.com', 'Good Website', '5'),
-(2, 'Sumit Singh', 'sumit@gmail.com', 'Best Website', '4'),
-(3, 'Ranjeet Singh', 'ranjeet@gmail.com', 'Good contents for students', '5');
+(1, 'Sai Anand', 'anand@gmail.com', 'Good Website', '5'),
+(2, 'Vivek', 'vivek@gmail.com', 'Impressive Website', '4'),
+(3, 'Sagar', 'sagar@gmail.com', 'Good usability.', '4'),
+(4, 'Khalid', 'khalid@gmail.com', 'Works good on mobile too!', '4'),
+(5, 'Leola', 'leola@gmail.com', 'Best thing that happened employees here!', '5');
 
 -- --------------------------------------------------------
 
@@ -147,15 +158,26 @@ INSERT INTO `feedback` (`feedback_id`, `feedback_name`, `feedback_email`, `feedb
 
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `hibernate_sequence`
 --
 
 INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(447),
-(113);
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15),
+(15);
 
 -- --------------------------------------------------------
 
@@ -172,19 +194,15 @@ CREATE TABLE `leaves` (
   `leave_to_date` varchar(300) NOT NULL,
   `leave_status` varchar(255) NOT NULL DEFAULT '0',
   `leave_total_days` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `leaves`
 --
 
 INSERT INTO `leaves` (`leave_id`, `leave_employee_id`, `leave_reason`, `leave_description`, `leave_from_date`, `leave_to_date`, `leave_status`, `leave_total_days`) VALUES
-(110, '2', 'Going to Home', 'Going to home', '2021-09-01', '2021-09-03', 'Approved', '3'),
-(111, '2', 'sdf', 'df', '2021-09-10', '2021-09-13', 'Disapproved', '4'),
-(112, '393', 'fffaaa', 'ggghh', '2021-09-21', '2021-09-22', 'Pending', 'gggaa'),
-(442, '', 'af', 'asdf', '2023-03-16', '2023-03-18', '', 'asdf'),
-(445, '1', 'adfsdsf', 'asdf', '2023-03-22', '2023-03-18', 'Pending', '23'),
-(446, '1', 'adsfsdaf', 'sf', '2023-03-15', '2023-03-22', 'Pending', '345a');
+(2, '1', 'vacation', 'vacation123', '2023-09-02', '2023-09-10', 'Approved', '9'),
+(10, '1', 'sick leave', 'Iam not feeling well since 3 days, kindly grant me a leave for mentioned dates.', '2023-09-08', '2023-09-09', 'Pending', '2');
 
 -- --------------------------------------------------------
 
@@ -193,21 +211,12 @@ INSERT INTO `leaves` (`leave_id`, `leave_employee_id`, `leave_reason`, `leave_de
 --
 
 CREATE TABLE `login` (
-  `login_id` int(11) NOT NULL,
-  `login_employee_id` varchar(255) NOT NULL,
-  `login_email` varchar(255) NOT NULL,
-  `login_password` varchar(255) NOT NULL,
-  `login_level_id` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `login`
---
-
-INSERT INTO `login` (`login_id`, `login_employee_id`, `login_email`, `login_password`, `login_level_id`) VALUES
-(1, '1001', 'admin@admin.com', 'test', '1'),
-(2, '1002', 'employee@gmail.com', 'test', '2'),
-(104, '103', 'x@gmail.com', 'test', '1');
+  `login_id` bigint(20) NOT NULL,
+  `login_email` varchar(255) DEFAULT NULL,
+  `login_employee_id` varchar(255) DEFAULT NULL,
+  `login_level_id` varchar(255) DEFAULT NULL,
+  `login_password` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -218,7 +227,7 @@ INSERT INTO `login` (`login_id`, `login_employee_id`, `login_email`, `login_pass
 CREATE TABLE `month` (
   `month_id` int(11) NOT NULL,
   `month_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `month`
@@ -237,6 +246,25 @@ INSERT INTO `month` (`month_id`, `month_name`) VALUES
 (10, 'October'),
 (11, 'November'),
 (12, 'December');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `roles_id` int(11) NOT NULL,
+  `roles_name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`roles_id`, `roles_name`) VALUES
+(1, 'Admin'),
+(2, 'Employee');
 
 -- --------------------------------------------------------
 
@@ -262,17 +290,20 @@ CREATE TABLE `salary` (
   `salary_desc` text NOT NULL,
   `salary_total` varchar(255) NOT NULL,
   `salary_dedc` varchar(255) NOT NULL,
-  `salary_slip` longblob,
+  `salary_slip` longblob DEFAULT NULL,
   `salary_slip_filename` varchar(400) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `salary`
 --
 
 INSERT INTO `salary` (`salary_id`, `salary_employee_id`, `salary_month`, `salary_working_days`, `salary_basic`, `salary_hra`, `salary_mediclaim`, `salary_ta`, `salary_da`, `salary_reimbursement`, `salary_ca`, `salary_others`, `salary_dpf`, `salary_dtax`, `salary_desc`, `salary_total`, `salary_dedc`, `salary_slip`, `salary_slip_filename`) VALUES
-(91, '1', '3', '30', '1000', '1000', '41000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', NULL, '1677693625_3.png'),
-(92, '1', '5', '30', '3500', '4500', '3', '3', '3', '3', '3', '3', '3', '3', '3', '7500', '3', NULL, '1677693654_salary.sql');
+(3, '1', '2', '15', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '1000', '999', '1000', 'salary', '6001', '1999', NULL, '1693460148_Salary-Slip.png'),
+(5, '2', '4', '23', '15000', '15000', '14999', '15000', '15000', '15000', '15000', '15000', '15000', '15000', 'salary', '89999', '30000', NULL, '1693460153_Salary-Slip.png'),
+(8, '7', '4', '3', '3000', '3000', '3000', '3000', '3000', '3000', '3000', '3000', '3000', '3000', 'salary', '18000', '6000', NULL, '1693460157_Salary-Slip.png'),
+(12, '11', '8', '18', '1500', '1500', '1500', '1500', '1500', '1500', '1500', '1500', '1500', '1500', 'salary', '9000', '3000', NULL, '1693460141_Salary-Slip.png'),
+(14, '13', '11', '28', '2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000', '2000', 'salary', '12000', '4000', NULL, '1693460128_Salary-Slip.png');
 
 -- --------------------------------------------------------
 
@@ -283,7 +314,7 @@ INSERT INTO `salary` (`salary_id`, `salary_employee_id`, `salary_month`, `salary
 CREATE TABLE `saluation` (
   `saluation_id` int(11) NOT NULL,
   `saluation_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `saluation`
@@ -295,7 +326,6 @@ INSERT INTO `saluation` (`saluation_id`, `saluation_name`) VALUES
 
 -- --------------------------------------------------------
 
-
 --
 -- Table structure for table `state`
 --
@@ -303,7 +333,7 @@ INSERT INTO `saluation` (`saluation_id`, `saluation_name`) VALUES
 CREATE TABLE `state` (
   `state_id` int(11) NOT NULL,
   `state_name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `state`
@@ -315,7 +345,10 @@ INSERT INTO `state` (`state_id`, `state_name`) VALUES
 (3, 'Bihar'),
 (4, 'Uttar Pradesh'),
 (5, 'Delhi'),
-(6, 'Haryana');
+(6, 'Haryana'),
+(7, 'Telangana'),
+(8, 'Andhra Pradesh'),
+(9, 'Karnataka');
 
 -- --------------------------------------------------------
 
@@ -337,20 +370,20 @@ CREATE TABLE `user` (
   `user_country` varchar(255) NOT NULL,
   `user_mobile` varchar(255) NOT NULL,
   `user_nationalty` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_level_id`, `user_email`, `user_password`, `user_first_name`, `user_last_name`, `user_dob`, `user_address`, `user_city`, `user_state`, `user_country`, `user_mobile`, `user_nationalty`) VALUES
-(1, '2', 'user@user.com', 'test', 'Aman', 'Kumar', '2021-10-15', 'gjhg', 'Mumbai', 'Maharastra', 'India', '9899786756', 'Indian'),
-(2, '2', 'agent@agent.com', 'test', 'Pawan', 'Kumar', '2021-10-15', 'jhjk', 'Jaipur', 'Rajasthan', 'India', '9878765434', 'jb'),
-(3, '2', 'rahul@gmail.com', 'test', 'Elite', 'Packers', '2021-10-08', 'jhg', 'Mumbai', 'Mahastra', 'India', '8987676567', 'g'),
-(4, '2', 'sumit@gmail.com', 'test', 'Sumit', 'Kumar', '2021-10-16', 'jk', 'Delhi', 'Delhi', 'India', '7689876567', 'kh'),
-(5, '2', 'amit@gmail.com', 'test', 'Aggarwal', 'Movers', '2021-10-26', 'gg1', 'Kanpur', 'Uttar Pradesh', 'India', '9123321289', 'gg1'),
-(392, '2', 'evon@gmail.com', 'asdf', 'Evon', 'Packers', '2022-09-23', '6', 'Noida', '8', '9', '9123321289', '5'),
-(393, '2', 'south@gmail.com', '1', 'South', 'Movers', '2022-09-21', '8', 'Mumbai', '9', '9', '9123321289', '8');
+(1, '2', 'anand@gmail.com', 'test', 'Sai', 'Anand', '2005-08-30', 'Secunderabad', 'Hyderabad', '7', '1', '9999999999', 'Indian'),
+(2, '2', 'vivek@gmail.com', 'test', 'Vivek', 'Khairnar', '2005-08-10', 'Local Street', 'Nashik', '1', '4', '7878787878', 'Indian'),
+(6, '1', 'admin@admin.com', 'test', 'Admin', 'Admin', '2005-08-01', 'new delhi', 'new delhi', '5', '1', '4545454545', 'Indian'),
+(7, '2', 'sagar@gmail.com', 'test', 'Sagar', 'Kottagattu', '2005-06-16', '10th Avenue', 'Alabama', '7', '2', '4545454545', 'Indian'),
+(9, '1', 'admin3@admin.com', 'test', 'Admin3', 'Admin3', '2005-08-12', 'xyz', 'xyz', '6', '3', '1111111111', 'Indian'),
+(11, '2', 'khalid@gmail.com', 'test', 'Khalid', 'Shaik', '2005-08-11', 'admin@admin.com', 'Mumbai', '1', '1', '5656565656', 'Indian'),
+(13, '2', 'leola@gmail.com', 'test', 'Leola', 'Leonor', '2005-08-20', 'admin@admin.com', 'Goa', '9', '4', '1212121212', 'Indian');
 
 --
 -- Indexes for dumped tables
@@ -404,6 +437,11 @@ ALTER TABLE `login`
 ALTER TABLE `month`
   ADD PRIMARY KEY (`month_id`);
 
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`roles_id`);
 
 --
 -- Indexes for table `salary`
@@ -416,7 +454,6 @@ ALTER TABLE `salary`
 --
 ALTER TABLE `saluation`
   ADD PRIMARY KEY (`saluation_id`);
-
 
 --
 -- Indexes for table `state`
@@ -444,7 +481,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -462,7 +499,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `leaves`
@@ -471,18 +508,10 @@ ALTER TABLE `leaves`
   MODIFY `leave_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=447;
 
 --
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
-
---
 -- AUTO_INCREMENT for table `month`
 --
 ALTER TABLE `month`
   MODIFY `month_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
-
 
 --
 -- AUTO_INCREMENT for table `salary`
@@ -500,7 +529,7 @@ ALTER TABLE `saluation`
 -- AUTO_INCREMENT for table `state`
 --
 ALTER TABLE `state`
-  MODIFY `state_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `state_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user`

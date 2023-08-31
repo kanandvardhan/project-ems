@@ -213,7 +213,7 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
     }
   };
 
-  let isUser = window.sessionStorage.getItem("user_level_id") === "2";
+  let isUser = window.sessionStorage.getItem("user_level_id") == "2";
 
   return (
     <section className="container-container">
@@ -613,11 +613,6 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                       </div>
                       <div className="form-group">
                         <div className="col-sm-offset-4 col-sm-8">
-                          {isUser && (
-                            <Link to="/salary-report">
-                              <button className="btn btn-default">Back</button>
-                            </Link>
-                          )}
                           {!isUser && (
                             <button type="submit" className="btn btn-default">
                               Submit
@@ -633,6 +628,10 @@ const SalaryAdd = ({ setAlert, salary, isAuthenticated }) => {
                               Reset
                             </button>
                           )}
+                          &nbsp;&nbsp;
+                          <Link to="/salary-report">
+                            <button className="btn btn-default">Back</button>
+                          </Link>
                         </div>
                       </div>
                       <input

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useSearchParams, useNavigate, useParams } from "react-router-dom";
+import {
+  useSearchParams,
+  useNavigate,
+  useParams,
+  Link,
+} from "react-router-dom";
 import { setAlert } from "../../actions/alert";
 import { PropTypes } from "prop-types";
 import axios from "axios";
@@ -120,7 +125,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
     totaldays();
   }, [formData.leave_from_date, formData.leave_to_date]);
 
-  const isUser = window.sessionStorage.getItem("user_level_id") === 2;
+  const isUser = window.sessionStorage.getItem("user_level_id") == 2;
 
   // Handling Submit
   const onSubmit = async (e) => {
@@ -355,6 +360,7 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                             name="leave_total_days"
                             className="form-control"
                             placeholder="Total Days"
+                            defaultValue="Total Days"
                             min={0}
                             disabled
                             required
@@ -398,6 +404,12 @@ const LeaveAdd = ({ setAlert, leave, isAuthenticated }) => {
                               Reset
                             </button>
                           )}
+                          &nbsp;&nbsp;
+                          <Link to="/leave-report">
+                            <button type="submit" className="btn btn-default">
+                              Back
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </form>

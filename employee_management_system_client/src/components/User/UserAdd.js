@@ -408,7 +408,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                           />
                         </div>
                         <div className="col">
-                          <label htmlFor="name">City</label>
+                          <label htmlFor="name">Current City</label>
                           <input
                             type="text"
                             className="form-control"
@@ -422,7 +422,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                       </div>
                       <div className="row">
                         <div className="col">
-                          <label htmlFor="name">State</label>
+                          <label htmlFor="name">Current State</label>
                           <select
                             required
                             id="user_state"
@@ -438,18 +438,9 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                               </option>
                             ))}
                           </select>
-                          {/* <input
-                            type="text"
-                            className="form-control"
-                            id="user_state"
-                            required
-                            name="user_state"
-                            value={formData.user_state}
-                            onChange={(e) => onChange(e)}
-                          /> */}
                         </div>
                         <div className="col">
-                          <label htmlFor="name">Country</label>
+                          <label htmlFor="name">Origin Country</label>
                           <select
                             id="user_state"
                             required
@@ -465,15 +456,6 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                               </option>
                             ))}
                           </select>
-                          {/* <input
-                            type="text"
-                            className="form-control"
-                            id="user_country"
-                            required
-                            name="user_country"
-                            value={formData.user_country}
-                            onChange={(e) => onChange(e)}
-                          />*/}
                         </div>
                       </div>
                       <div className="lgbtn">
@@ -490,7 +472,7 @@ const UserAdd = ({ setAlert, user, isAuthenticated }) => {
                         </button>
                         &nbsp;&nbsp;
                         <Link to={`${isUser ? "/Dashboard" : "/user-report"}`}>
-                          <button type="submit" className="btn btn-success">
+                          <button type="submit" className="btn btn-default">
                             Back
                           </button>
                         </Link>

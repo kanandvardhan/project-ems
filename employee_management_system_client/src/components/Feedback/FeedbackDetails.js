@@ -22,6 +22,8 @@ const HopitalDetails = () => {
     }
   }, []);
 
+  const isUser = window.sessionStorage.getItem("user_level_id") == 2;
+
   return (
     <section className="container-container">
       <section id="inner-headline">
@@ -76,6 +78,16 @@ const HopitalDetails = () => {
                       </tr>
                     </tbody>
                   </table>
+                  <div className="form-group">
+                    <div className="col-sm-offset-4 col-sm-8">
+                      &nbsp;&nbsp;
+                      <Link to="/feedback-report">
+                        <button type="submit" className="btn btn-default">
+                          Back
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </section>
               </div>
             </section>

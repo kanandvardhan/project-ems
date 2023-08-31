@@ -73,11 +73,11 @@ const Login = ({ login, isAuthenticated }) => {
           );
           // checks if admin
           if (response.data.user_level_id == 1) {
-            alert.error("You are trying to login through Users-Login.");
+            alert.error("You are trying to login through User-Login.");
             setMessage({
               show_message: true,
               error_type: "alert-danger",
-              msg: "You are trying to login through Users-Login.",
+              msg: "You are trying to login through User-Login.",
             });
             return;
           }

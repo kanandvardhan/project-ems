@@ -73,7 +73,7 @@ export default class SalaryReport extends React.Component {
   }
 
   isUser() {
-    return window.sessionStorage.getItem("user_level_id") === 2;
+    return window.sessionStorage.getItem("user_level_id") == 2;
   }
 
   render() {
