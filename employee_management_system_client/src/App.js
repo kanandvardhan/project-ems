@@ -5,10 +5,8 @@ import Alert from "./components/Layout/Alert";
 import Header from "./components/Layout/Header";
 
 import "./App.css";
-import Contact from "./components/Pages/Contact";
 import About from "./components/Pages/About";
 import Landing from "./components/Pages/Landing";
-import OwnerLanding from "./components/Layout/OwnerLanding";
 import Login from "./components/auth/login";
 import Adminlogin from "./components/auth/Adminlogin";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
