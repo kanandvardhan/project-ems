@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `employee_management_system`
 --
-
+use employee_management_system;
 -- --------------------------------------------------------
 
 --

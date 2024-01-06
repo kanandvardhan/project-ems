@@ -16,7 +16,7 @@ export const loaduser = () => async (dispatch) => {
     setauthtoken(localStorage.token);
   }
   try {
-    const res = await axios.get("http://localhost:8080/api/auth");
+    const res = await axios.get("https://ems-6ugm.onrender.com/api/auth");
     dispatch({
       type: USER_LOAD,
       payload: res.data,
@@ -40,7 +40,7 @@ export const register =
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/users",
+        "https://ems-6ugm.onrender.com/api/users",
         body,
         config
       );
@@ -73,7 +73,7 @@ export const login = (email, password) => async (dispatch) => {
   console.log("1");
   try {
     const res = await axios.post(
-      "http://localhost:8080/api/auth",
+      "https://ems-6ugm.onrender.com/api/auth",
       body,
       config
     );
